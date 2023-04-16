@@ -14,8 +14,17 @@ data['Order Year'] = data['Order Date'].dt.year
 data['Order Day of Week'] = data['Order Date'].dt.dayofweek
 
 def monthy_sales():
-    df = data.groupby('Order Month')['Sales'].sum().reset_index(name='counts')
-    fig = px.line(df, y='counts', x='Order Month', title='Monthly sales')
+    df = data.groupby('Order Month')['Sales'].sum().reset_index(name='sales')
+    fig = px.line(df, y='sales', x='Order Month', title='Monthly sales')
     fig.show()
 
-monthy_sales()
+def sales_by_category():
+    df = data.groupby('Category')['Sales'].sum().reset_index(name='sales')
+    fig = px.pie(df, values='sales', names='Category', hole=0.5,
+                    title='Sales by category',
+                    color_discrete_sequence=px.colors.qualitative.Set3)
+    fig.update_traces(textposition='inside', textinfo='percent+label')
+    fig.update_layout(title_font=dict(size=24))
+    fig.show()
+
+sales_by_category()
