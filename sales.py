@@ -27,4 +27,9 @@ def sales_by_category():
     fig.update_layout(title_font=dict(size=24))
     fig.show()
 
-sales_by_category()
+def sales_by_subCategory():
+    df = data.groupby('Sub-Category')['Sales'].sum().reset_index(name='sales')
+    fig = px.bar(df, y='sales', x='Sub-Category', title='Sales by sub category')
+    fig.show()
+
+sales_by_subCategory()
