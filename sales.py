@@ -46,4 +46,9 @@ def profits_by_category():
     fig.update_layout(title_font=dict(size=24))
     fig.show()
 
-profits_by_category()
+def profits_by_subCategory():
+    df = data.groupby('Sub-Category')['Profit'].sum().reset_index(name='profits')
+    fig = px.bar(df, y='profits', x='Sub-Category', title='Profits by sub category')
+    fig.show()
+
+profits_by_subCategory()
