@@ -32,4 +32,9 @@ def sales_by_subCategory():
     fig = px.bar(df, y='sales', x='Sub-Category', title='Sales by sub category')
     fig.show()
 
-sales_by_subCategory()
+def monthly_profits():
+    df = data.groupby('Order Month')['Profit'].sum().reset_index(name='profits')
+    fig = px.line(df, y='profits', x='Order Month', title='Monthly profits')
+    fig.show()
+
+monthly_profits()
