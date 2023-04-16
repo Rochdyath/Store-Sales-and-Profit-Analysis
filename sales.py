@@ -37,4 +37,13 @@ def monthly_profits():
     fig = px.line(df, y='profits', x='Order Month', title='Monthly profits')
     fig.show()
 
-monthly_profits()
+def profits_by_category():
+    df = data.groupby('Category')['Profit'].sum().reset_index(name='profits')
+    fig = px.pie(df, values='profits', names='Category', hole=0.5,
+                    title='Profits by category',
+                    color_discrete_sequence=px.colors.qualitative.Set3)
+    fig.update_traces(textposition='inside', textinfo='percent+label')
+    fig.update_layout(title_font=dict(size=24))
+    fig.show()
+
+profits_by_category()
