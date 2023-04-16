@@ -2,7 +2,6 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import plotly.io as pio
-# import plotly.colors as colors
 pio.templates.default = "plotly_white"
 
 data = pd.read_csv("Superstore.csv", encoding='latin-1')
@@ -60,5 +59,3 @@ def sales_and_profit_by_customer():
     fig.update_layout(title='Sales and Profit Analysis by Customer Segment',
                     xaxis_title='Customer Segment', yaxis_title='Amount')
     fig.show()
-
-sales_and_profit_by_customer()
