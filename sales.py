@@ -14,7 +14,7 @@ data['Order Year'] = data['Order Date'].dt.year
 data['Order Day of Week'] = data['Order Date'].dt.dayofweek
 
 def monthy_sales():
-    df = data.groupby('Order Month').size().reset_index(name='sales')
+    df = data.groupby('Order Month')['Sales'].sum().reset_index(name='counts')
     fig = px.line(df, y='counts', x='Order Month', title='Monthly sales')
     fig.show()
 
